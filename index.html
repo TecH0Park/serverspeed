@@ -1,0 +1,318 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Server Speed Test</title>
+  <link href="index.css" rel="stylesheet" type="text/css" />
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f8;
+}
+h1 {
+  text-align: center;
+  font-style: inherit;
+  font-weight: bolder;
+  color: #020007;
+  margin-top: 0;
+}
+form {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #070000;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+button[type="submit"] {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background-color: #12024b;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+button[type="submit"]:hover {
+  background-color: #f3f2f7;
+  color: #070000;
+}
+.result {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #0f0101;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.loading {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #888;
+}
+.loading p {
+  margin: 0;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Server Speed Test</h1>
+    <form id="tracerouteForm">
+      <label for="ipAddress">Enter IP Address:</label>
+      <input type="text" id="ipAddress" name="ipAddress" required>
+      <button type="submit">Run Test</button>
+    </form>
+    <div id="resultContainer" class="result"></div>
+    <div id="loadingContainer" class="loading" style="display: none;">
+      <p>Loading...</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('tracerouteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var ipAddress = document.getElementById('ipAddress').value;
+      runTraceroute(ipAddress);
+    });
+    function runTraceroute(ipAddress) {
+      var resultContainer = document.getElementById('resultContainer');
+      var loadingContainer = document.getElementById('loadingContainer');
+      resultContainer.textContent = '';
+      loadingContainer.style.display = 'block';
+      fetch('/trace-route?ip=' + ipAddress, { timeout: 3000 })
+        .then(function(response) {
+          return response.text();
+        })
+        .then(function(result) {
+          displayResult(result);
+        })
+        .catch(function(error) {
+          console.error('An error occurred:', error);
+        })
+        .finally(function() {
+          loadingContainer.style.display = 'none';
+        });
+    }
+    function displayResult(result) {
+      var resultContainer = document.getElementById('resultContainer');
+      resultContainer.textContent = result;
+    }
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Server Speed Test</title>
+  
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f8;
+  animation: fade-in 1s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  text-align: center;
+  font-style: inherit;
+  font-weight: bolder;
+  color: #020007;
+  margin-top: 0;
+  
+}
+form {
+  margin-bottom: 20px;
+  animation: slide-up 1s ease-in-out;
+}
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #070000;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background-color: #12024b;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #12024b;
+  }
+  50% {
+    background-color: #090c1d;
+  }
+  100% {
+    background-color: #12024b;
+  }
+}
+
+button[type="submit"]:hover {
+  background-color: #f3f2f7;
+  color: #070000;
+  animation: none;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #0f0101;
+  border-radius: 5px;
+  background-color: #fff;
+  animation: slide-down 1s ease-in-out;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #888;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading p {
+  margin: 0;
+  font-weight: bolder;
+  color: #272727;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Server Speed Test</h1>
+    <form id="tracerouteForm">
+      <label for="ipAddress">Enter IP Address:</label>
+      <input type="text" id="ipAddress" name="ipAddress" required>
+      <button type="submit">Run Test</button>
+    </form>
+    <div id="resultContainer" class="result"></div>
+    <div id="loadingContainer" class="loading" style="display: none;">
+      <p>:</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('tracerouteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var ipAddress = document.getElementById('ipAddress').value;
+      runTraceroute(ipAddress);
+    });
+    function runTraceroute(ipAddress) {
+      var resultContainer = document.getElementById('resultContainer');
+      var loadingContainer = document.getElementById('loadingContainer');
+      resultContainer.textContent = '';
+      loadingContainer.style.display = 'block';
+      fetch('/trace-route?ip=' + ipAddress, { timeout: 3000 })
+        .then(function(response) {
+          return response.text();
+        })
+        .then(function(result) {
+          displayResult(result);
+        })
+        .catch(function(error) {
+          console.error('An error occurred:', error);
+        })
+        .finally(function() {
+          loadingContainer.style.display = 'none';
+        });
+    }
+    function displayResult(result) {
+      var resultContainer = document.getElementById('resultContainer');
+      resultContainer.textContent = result;
+    }
+  </script>
+</body>
+</html>
